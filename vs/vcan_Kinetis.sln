@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vcan_Kinetis", "vcan_Kinetis.vcxproj", "{865db3d8-dfad-45ee-610f-235bd8de899f}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{865db3d8-dfad-45ee-610f-235bd8de899f}.MK66FX18_Debug|Win32.ActiveCfg = MK66FX18_Debug|Win32
+		{865db3d8-dfad-45ee-610f-235bd8de899f}.MK66FX18_Debug|Win32.Build.0 = MK66FX18_Debug|Win32
+		{865db3d8-dfad-45ee-610f-235bd8de899f}.MK66FX18_Release|Win32.ActiveCfg = MK66FX18_Release|Win32
+		{865db3d8-dfad-45ee-610f-235bd8de899f}.MK66FX18_Release|Win32.Build.0 = MK66FX18_Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
