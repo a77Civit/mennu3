@@ -12,12 +12,10 @@
 #include "include.h"
 #include "menu.h"
 uint8 ISLCD_ON_FLAG = 0;
+uint8 ElementBUFF[10]={0};
 
 int welcome_page(void) {
-  int select_number = 0;  // 锟??閫変腑鐨勶拷?锟藉彿 锟??0寮�锟??
-  int select_flage = 0;   // 锟??锟??鎸変笅鏍囧織
-  KEY_MSG_t keymsg;       // 鎸夐敭娑堟伅闃熷垪
-
+ 
 
   Site_t site_jijun1 = {10, 30};
   Site_t site_jijun2 = {10, 45};
@@ -107,6 +105,8 @@ void startmenu()
 #if PID_IS_CHANGE
     PIDjudgement();
 #endif
+
+
 }
 
 void PIDjudgement(void)
@@ -258,4 +258,67 @@ int show_select_location(int location) {
   buff[NUMBER_LENGTH - 1 - location] = '^';
   lcd_str(site, (uint8 *)buff, BLUE, RED);
   return 0;
+}
+
+/*
+道路元素队列并输入
+输入的第一个数字是第一个元素的特征值也是总元素的数量。
+*/
+
+void Element_Entry_menu(void)
+{
+  Site_t site_tittle = {50,20};
+  Site_t site_body = {50,70};
+
+  KEY_MSG_t keymsg;
+  //uint8 location = 0;//第一个输入元素，即数组的索引零为0，最左为第一个元素
+  uint8 select_flag = 0;
+  uint8 Num_init = 2;
+  //uint16 temp = 0;
+  //uint8 *point;
+  uint8 select_number = Num_init;
+  lcd_str_ench(site_tittle,"道路元素队列输入",BLUE,RED);
+  lcd_num_c(site_body,Num_init,BLUE,RED);
+
+  while(select_flag == 0)
+  {
+    if ((get_key_msg(&keymsg) == 1) && keymsg.status == KEY_DOWN)
+      {
+        switch(keymsg.key){
+          case KEY_U:
+            select_number = chang_element_number(select_number, keymsg);
+            lcd_num_c(site_body, select_number, BLUE, RED);
+            break; 
+          case KEY_D:
+            select_number = chang_element_number(select_number, keymsg);
+            lcd_num_c(site_body,select_number,BLUE,RED);
+            break;
+          case KEY_B:
+            select_flag = 1;
+          default:
+            break;
+
+        };
+
+      }
+  }
+  //如果 i = 4,则buff从零开始依次是3，2，1，0，共四个元素。
+  for (int i = 0 ;i<select_number-1;i ++)
+  {
+    ElementBUFF[i]=select_number - i -1;
+  }
+}
+
+uint8 chang_element_number(uint8 input, KEY_MSG_t keysta)
+{
+  switch(keysta.key)
+  {
+    case KEY_U:
+      return (input + 1)%10;
+      break;
+    case KEY_D:
+      return (input - 1 + 10)%10;
+      break;
+  };
+
 }
