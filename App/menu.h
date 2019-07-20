@@ -14,6 +14,7 @@
 void startmenu(void);
 void PIDjudgement(void);
 int show_select_location(int location);
+void Element_Entry_menu(void) 
 uint8 chang_element_number(uint8 input, KEY_MSG_t keysta);
 extern uint8 ElementBUFF[10];
 
